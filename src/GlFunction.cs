@@ -6,14 +6,16 @@ namespace opengl_beef {
     class GlParameter {
         public String Type { get; }
         public String Name { get; }
+        public bool Pointer { get; }
 
         public GlParameter(XmlNode node) {
             XmlNode ptypeNode = node["ptype"];
             XmlNode nameNode = node["name"];
 
             if (ptypeNode != null && nameNode != null) {
-                Type = ptypeNode.InnerText.Trim() + (node.InnerText.Contains("*") ? "*" : "");
+                Type = ptypeNode.InnerText.Trim();
                 Name = nameNode.InnerText.Trim();
+                Pointer = node.InnerText.Contains("*");
             } else {
                 int splitI;
                 if (node.InnerText.Contains('*')) splitI = node.InnerText.LastIndexOf('*');
