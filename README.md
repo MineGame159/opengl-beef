@@ -4,7 +4,7 @@
 # Quick Start
 1. Install dotnet core sdk.
 2. Copy this repository.
-3. Run "dotnet run --version 3.3 --profile Core" in your copied opengl-beef folder with modified version and profile arguments.
+3. Run "dotnet run --glVersion 3.3 --profile Core" in your copied opengl-beef folder with modified version and profile arguments.
 4. Copy generated GL.bf file to your project and change its namespace.
 5. Happy coding! Example using my [glfw-beef](https://github.com/MineGame159/glfw-beef) library:
 ```

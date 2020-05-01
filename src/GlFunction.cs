@@ -12,7 +12,7 @@ namespace opengl_beef {
             XmlNode nameNode = node["name"];
 
             if (ptypeNode != null && nameNode != null) {
-                Type = ptypeNode.InnerText.Trim();
+                Type = ptypeNode.InnerText.Trim() + (node.InnerText.Contains("*") ? "*" : "");
                 Name = nameNode.InnerText.Trim();
             } else {
                 int splitI;
