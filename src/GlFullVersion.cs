@@ -162,10 +162,10 @@ namespace opengl_beef {
                 case "GLhalf":               return "uint16";
                 case "GLhalfARB":            return "uint16";
                 case "GLfixed":              return "int32";
-                case "GLintptr":             return "int*";
-                case "GLintptrARB":          return "int*";
-                case "GLsizeiptr":           return "int*";
-                case "GLsizeiptrARB":        return "int*";
+                case "GLintptr":             return "int";
+                case "GLintptrARB":          return "int";
+                case "GLsizeiptr":           return "int";
+                case "GLsizeiptrARB":        return "int";
                 case "GLint64":              return "int64";
                 case "GLint64EXT":           return "int64";
                 case "GLuint64":             return "uint64";
