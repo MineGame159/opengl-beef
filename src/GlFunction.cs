@@ -18,8 +18,10 @@ namespace opengl_beef {
                 Pointer = node.InnerText.Contains("*");
             } else {
                 int splitI;
-                if (node.InnerText.Contains('*')) splitI = node.InnerText.LastIndexOf('*');
-                else splitI = node.InnerText.LastIndexOf(' ');
+                if (node.InnerText.Contains('*')) {
+                    splitI = node.InnerText.LastIndexOf('*');
+                    Pointer = true;
+                } else splitI = node.InnerText.LastIndexOf(' ');
 
                 Type = node.InnerText.Substring(0, splitI).Trim();
                 Name = node.InnerText.Substring(splitI + 1).Trim();
