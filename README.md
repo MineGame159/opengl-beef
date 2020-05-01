@@ -34,3 +34,5 @@ namespace test {
 	}
 }
 ```
+
+Why I am not using Beef for the generator? When there is xml library I will consider rewriting it.
