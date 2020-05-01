@@ -12,7 +12,6 @@ using System;
 using glfw_beef;
 
 namespace test {
-
 	class Program {
 		public static void Main() {
 			Glfw.Init();
