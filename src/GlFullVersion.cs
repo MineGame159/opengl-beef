@@ -101,7 +101,7 @@ namespace opengl_beef {
                 int ii = 0;
                 foreach (GlParameter glParameter in glFunction.Parameters) {
                     if (ii > 0) writer.Write(", ");
-                    writer.Write(ConvertType(glParameter.Type) + (glParameter.Pointer ? "*" : "") + " " + ConvertParamName(glParameter.Name));
+                    writer.Write(ConvertType(glParameter.Type) + glParameter.Pointer + " " + ConvertParamName(glParameter.Name));
                     ii++;
                 }
                 writer.WriteLine(");");
