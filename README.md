@@ -7,7 +7,7 @@
 3. Run "dotnet run --glVersion 3.3 --profile Core" in your copied opengl-beef folder with modified version and profile arguments.
 4. Copy generated GL.bf file to your project and change its namespace.
 5. Happy coding! Example using my [glfw-beef](https://github.com/MineGame159/glfw-beef) library:
-```
+```csharp
 using System;
 using glfw_beef;
 
@@ -32,6 +32,18 @@ namespace test {
 			Glfw.DestroyWindow(window);
 		}
 	}
+}
+```
+
+# How to use with SDL (excluded window creation and other stuff):
+```csharp
+static void* SdlGetProcAddress(StringView string) {
+	return SDL.SDL_GL_GetProcAddress(string.ToScopeCStr!());
+}
+
+static void Main() {
+	SDL.GL_CreateContext(window);
+	GL.Init(=> SdlGetProcAddress);
 }
 ```
 
