@@ -171,6 +171,9 @@ namespace opengl_beef {
                 case "GLuint64":             return "uint64";
                 case "GLuint64EXT":          return "uint64";
                 case "GLsync":               return "void*";
+                case "GLDEBUGPROC":          
+                case "GLDEBUGPROCARB":       
+                case "GLDEBUGPROCKHR":       return $"function void({ConvertType("GLenum")} source, {ConvertType("GLenum")} type, {ConvertType("GLuint")} id, {ConvertType("GLenum")} severity, {ConvertType("GLsizei")} length, {ConvertType("GLchar")}* message, void* userParam)";
                 default:                     return type.Replace("const", "").Trim();
             }
         }
