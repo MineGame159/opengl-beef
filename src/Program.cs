@@ -22,7 +22,7 @@ namespace opengl_beef {
         }
 
         static Stream GetGlXmlStream() {
-            WebRequest req = WebRequest.Create("https://raw.githubusercontent.com/KhronosGroup/OpenGL-Registry/master/xml/gl.xml");
+            WebRequest req = WebRequest.Create("http://raw.githubusercontent.com/KhronosGroup/OpenGL-Registry/master/xml/gl.xml");
             return req.GetResponse().GetResponseStream();
         }
     }
