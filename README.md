@@ -1,6 +1,8 @@
 # OpenGL-Beef
 **opengl-beef** is a Beef opengl loader generator. Works with any windowing library that provides GetProcAddress function. For now it only generates gl api and no extensions.
 
+**Note:** When passing arrays to opengl with type uint you need to use uint32.
+
 # Quick Start
 1. Install dotnet core sdk.
 2. Copy this repository.
