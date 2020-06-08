@@ -97,11 +97,11 @@ namespace opengl_beef {
             foreach (GlFunction glFunction in Functions) {
                 if (i > 0) writer.WriteLine();
 
-                writer.Write("        public function " + ConvertType(glFunction.ReturnType) + " " + GetFunctionPointerName(glFunction) + "(");
+                writer.Write("        public function " + ConvertType(glFunction.ReturnType, false) + " " + GetFunctionPointerName(glFunction) + "(");
                 int ii = 0;
                 foreach (GlParameter glParameter in glFunction.Parameters) {
                     if (ii > 0) writer.Write(", ");
-                    writer.Write(ConvertType(glParameter.Type) + glParameter.Pointer + " " + ConvertParamName(glParameter.Name));
+                    writer.Write(ConvertType(glParameter.Type, glParameter.Pointer.Length > 0) + glParameter.Pointer + " " + ConvertParamName(glParameter.Name));
                     ii++;
                 }
                 writer.WriteLine(");");
@@ -136,20 +136,20 @@ namespace opengl_beef {
             }
         }
 
-        private String ConvertType(String type) {
+        private String ConvertType(String type, bool isPointer) {
             switch (type) {
-                case "GLenum":               return "uint";
+                case "GLenum":               return isPointer ? "uint32" : "uint";
                 case "GLboolean":            return "uint8";
-                case "GLbitfield":           return "uint";
+                case "GLbitfield":           return isPointer ? "uint32" : "uint";
                 case "GLvoid":               return "void";
                 case "GLbyte":               return "int8";
                 case "GLubyte":              return "uint8";
                 case "GLshort":              return "int16";
                 case "GLushort":             return "uint16";
-                case "GLint":                return "int";
-                case "GLuint":               return "uint";
+                case "GLint":                return isPointer ? "int32" : "int";
+                case "GLuint":               return isPointer ? "uint32" : "uint";
                 case "GLclampx":             return "int32";
-                case "GLsizei":              return "int";
+                case "GLsizei":              return isPointer ? "int32" : "int";
                 case "GLfloat":              return "float";
                 case "GLclampf":             return "float";
                 case "GLdouble":             return "double";
@@ -162,10 +162,10 @@ namespace opengl_beef {
                 case "GLhalf":               return "uint16";
                 case "GLhalfARB":            return "uint16";
                 case "GLfixed":              return "int32";
-                case "GLintptr":             return "int";
-                case "GLintptrARB":          return "int";
-                case "GLsizeiptr":           return "int";
-                case "GLsizeiptrARB":        return "int";
+                case "GLintptr":             return isPointer ? "int32" : "int";
+                case "GLintptrARB":          return isPointer ? "int32" : "int";
+                case "GLsizeiptr":           return isPointer ? "int32" : "int";
+                case "GLsizeiptrARB":        return isPointer ? "int32" : "int";
                 case "GLint64":              return "int64";
                 case "GLint64EXT":           return "int64";
                 case "GLuint64":             return "uint64";
@@ -173,7 +173,7 @@ namespace opengl_beef {
                 case "GLsync":               return "void*";
                 case "GLDEBUGPROC":          
                 case "GLDEBUGPROCARB":       
-                case "GLDEBUGPROCKHR":       return $"function void({ConvertType("GLenum")} source, {ConvertType("GLenum")} type, {ConvertType("GLuint")} id, {ConvertType("GLenum")} severity, {ConvertType("GLsizei")} length, {ConvertType("GLchar")}* message, void* userParam)";
+                case "GLDEBUGPROCKHR":       return $"function void({ConvertType("GLenum", isPointer)} source, {ConvertType("GLenum", isPointer)} type, {ConvertType("GLuint", isPointer)} id, {ConvertType("GLenum", isPointer)} severity, {ConvertType("GLsizei", isPointer)} length, {ConvertType("GLchar", isPointer)}* message, void* userParam)";
                 default:                     return type.Replace("const", "").Trim();
             }
         }
